@@ -1,0 +1,25 @@
+interface ReferralData {
+    referrals: { [userId:string]:string[]};
+    referredBy: { [userId:string]:string[]}
+}
+
+let storage : ReferralData = {
+    referrals:{},
+    referredBy:{}
+}
+
+export function saveReferral(userId:string, referrerId: string){
+    if(!storage.referrals[referrerId]){
+        storage.referrals[referrerId] = []
+    }
+    storage.referrals[referrerId].push(userId)
+    storage.referredBy[userId] = referrerId
+}
+
+export function getRefferals(userId: string) : string[]{
+    return storage.referredBy[userId] || []
+}
+
+export function getReferrer(userId: string) : string || null{
+    return storage.referredBy[userId] || null
+}
