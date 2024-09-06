@@ -8,10 +8,10 @@ interface ReferralSystemProps {
 }
 const ReferralSystem : React.FC<ReferralSystemProps> = ({initData,userId,startParam}) => {
     const [referrals,setReferrals] = useState<string[]>([])
-    const [referrer,setReferrer] = useState<string[] || null>(null)
-    const INVITE_URL  = "https://t.me/referral_showcase_bot/start"
+    const [referrer,setReferrer] = useState<string | null>(null)
+    const INVITE_URL  = "https://t.me/HamstartKombatClone_bot/HamstarKombatCloneApp/start"
 
-    useEffect(async() =>{
+    useEffect(() =>{
         const checkReferral = async () =>{
             if(startParam && userId){
                 try{
@@ -42,8 +42,8 @@ const ReferralSystem : React.FC<ReferralSystemProps> = ({initData,userId,startPa
                 }
             }
         }
-        await checkReferral()
-        await fetchReferrals()
+         checkReferral()
+         fetchReferrals()
     },[userId,startParam])
 
     const handleInviteFriend = () =>{
@@ -78,11 +78,11 @@ const ReferralSystem : React.FC<ReferralSystemProps> = ({initData,userId,startPa
                     <div className="mt-8">
                         <h2 className="text-2xl font-bold mb-4">Your Referrals</h2>
                         <ul>
-                            {referrals.map((referral,index)=>{
+                            {referrals.map((referral,index)=>(
                                 <li key={index} className="bg-gray-100 p-2 mb-2 rounded">
                                     User {referral}
                                 </li>
-                            })}
+                            ))}
                         </ul>
                     </div>
                 )}
